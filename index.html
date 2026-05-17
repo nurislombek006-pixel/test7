@@ -1,0 +1,108 @@
+<style>
+    /* ... твои старые стили ... */
+
+    /* Эффект полуразмытого фона для меню */
+    #content-locker {
+        filter: blur(8px); /* Увеличили размытие для красоты */
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.4;
+        transition: filter 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Исправленный экран оплаты (Paywall) */
+    #paywall {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.85); /* Полупрозрачный темный фон */
+        backdrop-filter: blur(4px); /* Дополнительное размытие самого фона */
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Начинаем сверху, чтобы поместилось всё */
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        overflow-y: auto; /* Добавляем прокрутку, если экран маленький */
+    }
+
+    .lock-icon { font-size: 40px; margin-bottom: 10px; }
+    
+    .payment-info {
+        background: rgba(30, 41, 59, 0.9);
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px dashed var(--accent-blue);
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    /* Стиль для поля ввода (теперь точно будет видно) */
+    .input-key {
+        width: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        border: 2px solid var(--accent-blue);
+        background: #0f172a;
+        color: white;
+        margin: 10px 0;
+        text-align: center;
+        font-family: monospace;
+        font-size: 16px; /* Чтобы iOS не увеличивал экран при вводе */
+        outline: none;
+    }
+
+    .btn-primary { 
+        background: var(--accent-blue); 
+        color: #fff; 
+        padding: 14px; 
+        border-radius: 12px; 
+        font-weight: bold; 
+        width: 100%;
+        border: none;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+</style>
+
+<div class="card">
+    <div id="paywall">
+        <div class="lock-icon">🔒</div>
+        <h2 style="margin: 0; font-size: 1.2em;">Доступ ограничен</h2>
+        <p style="color: var(--text-muted); font-size: 0.85em; margin: 8px 0;">
+            Пробный период завершен. Для активации всех 300 вопросов оформите подписку.
+        </p>
+
+        <div class="payment-info">
+            <div style="font-size: 0.85em; color: var(--text-muted);">Стоимость: <b>30 000 сум</b></div>
+            <div style="font-size: 1em; font-weight: bold; margin: 8px 0; letter-spacing: 1px; color: #fff;">
+                5614 6887 0288 1144
+            </div>
+            <a href="https://t.me/nurislombekm" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-size: 0.85em; font-weight: bold;">
+                👨‍💻 Админ: @nurislombekm
+            </a>
+        </div>
+
+        <div id="user-id-box" style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 5px;">
+            Ваш ID: <b id="my-id-display" style="color: #fff;">загрузка...</b>
+        </div>
+
+        <input type="text" id="activation-key" class="input-key" placeholder="Вставьте ключ здесь">
+        <button class="btn btn-primary" onclick="handleActivation()">АКТИВИРОВАТЬ</button>
+        
+        <div style="min-height: 20px;"></div>
+    </div>
+
+    <div id="content-locker">
+        <div style="text-align: center; margin-bottom: 10px;">
+            <div style="font-size: 0.8em; color: var(--accent-blue); font-weight: bold;">GPTbyNURIK</div>
+            <h1>📊 Экономика Pro</h1>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button class="btn-primary" style="grid-column: span 2; opacity: 0.8;">⚡ Начать экзамен</button>
+            <button class="btn-secondary" style="padding: 12px; border-radius: 10px; border:none;">🧩 Тренировка</button>
+            <button class="btn-secondary" style="padding: 12px; border-radius: 10px; border:none;">📖 База</button>
+        </div>
+    </div>
+</div>
